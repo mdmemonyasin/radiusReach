@@ -1,0 +1,9 @@
+# Internal working docs — not for public publication
+BRIEF.md
+DESIGN_SPEC.md
+DESIGN_REVISIONS.md
+FOUNDER_FEEDBACK.md
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
