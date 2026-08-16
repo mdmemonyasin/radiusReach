@@ -14,9 +14,11 @@ const CONFIG = {
   PHONE: "+91 62643 57763",
   // Contact email
   EMAIL: "admin@radiusreach.in",
-  // Form endpoint (e.g. Formspree / Netlify / Google Form). Leave "" to use the
-  // built-in demo success state (no real network submit).
-  FORM_ENDPOINT: "",
+  // Form endpoint. Using Web3Forms (delivers submissions to admin@radiusreach.in).
+  // Leave "" to fall back to the built-in demo success state (no real network submit).
+  FORM_ENDPOINT: "https://api.web3forms.com/submit",
+  // Web3Forms access key (paired with the endpoint above)
+  WEB3FORMS_KEY: "594faec3-d497-413c-bb77-1b1b16f6e593",
   // "From" price anchors for Online Presence (clearly a starting point)
   WEBSITE_FROM: "₹14,999",
   SEO_FROM: "₹4,999/mo",
@@ -333,6 +335,12 @@ const CONFIG = {
       if (CONFIG.FORM_ENDPOINT) {
         try {
           const data = new FormData(form);
+          // Web3Forms fields
+          if (CONFIG.WEB3FORMS_KEY) {
+            data.append("access_key", CONFIG.WEB3FORMS_KEY);
+            data.append("subject", "New lead from radiusReach website");
+            data.append("from_name", "radiusReach website");
+          }
           const res = await fetch(CONFIG.FORM_ENDPOINT, {
             method: "POST",
             body: data,
