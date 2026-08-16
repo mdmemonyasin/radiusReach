@@ -9,11 +9,11 @@
    ------------------------------------------------------------ */
 const CONFIG = {
   // WhatsApp number in international format, digits only (no +, spaces or dashes)
-  WHATSAPP_NUMBER: "919876543210",
+  WHATSAPP_NUMBER: "916264357763",
   // Phone number for tel: links (human-readable, may include + and spaces)
-  PHONE: "+91 98765 43210",
+  PHONE: "+91 62643 57763",
   // Contact email
-  EMAIL: "hello@radiusreach.com",
+  EMAIL: "admin@radiusreach.in",
   // Form endpoint (e.g. Formspree / Netlify / Google Form). Leave "" to use the
   // built-in demo success state (no real network submit).
   FORM_ENDPOINT: "",
