@@ -332,7 +332,14 @@ const CONFIG = {
         }
       };
 
+      const errorPanel = $("#formError");
+      if (errorPanel) errorPanel.hidden = true;
+
       if (CONFIG.FORM_ENDPOINT) {
+        // Guard against the request stalling forever (slow network / blocker):
+        // abort after a timeout so the button can't spin indefinitely.
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
         try {
           const data = new FormData(form);
           // Web3Forms fields
@@ -345,13 +352,22 @@ const CONFIG = {
             method: "POST",
             body: data,
             headers: { Accept: "application/json" },
+            signal: controller.signal,
           });
-          if (res.ok) { showSuccess(); }
-          else { throw new Error("Bad response"); }
+          clearTimeout(timeoutId);
+          const result = await res.json().catch(() => ({}));
+          if (res.ok && result.success !== false) { showSuccess(); }
+          else { throw new Error(result.message || "Bad response"); }
         } catch (err) {
+          clearTimeout(timeoutId);
           submitBtn.disabled = false;
           submitBtn.textContent = originalLabel;
-          alert("Sorry, something went wrong. Please WhatsApp us instead.");
+          if (errorPanel) {
+            errorPanel.hidden = false;
+            errorPanel.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "center" });
+          } else {
+            alert("Sorry, something went wrong. Please WhatsApp us instead.");
+          }
         }
       } else {
         // Demo mode: no backend wired

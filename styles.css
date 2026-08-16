@@ -535,6 +535,15 @@ select:focus-visible, textarea:focus-visible, .checkbox input:focus-visible + .c
 .checkbox input:checked + .checkbox__box svg { opacity: 1; }
 .form__foot { color: var(--muted); text-align: center; }
 
+/* error panel (submission failed) */
+.form__error {
+  margin-top: 16px; padding: 16px 18px;
+  background: color-mix(in srgb, var(--danger) 8%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--danger) 35%, var(--line));
+  border-radius: var(--r-md); display: flex; flex-direction: column; gap: 12px;
+}
+.form__error .body-sm { color: var(--ink); }
+
 /* success panel */
 .form-success {
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
