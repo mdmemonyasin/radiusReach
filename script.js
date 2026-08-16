@@ -327,9 +327,22 @@ const CONFIG = {
         form.hidden = true;
         if (success) {
           success.hidden = false;
-          success.focus && success.setAttribute("tabindex", "-1");
+          // Move focus to the confirmation for screen-reader / keyboard users
+          success.setAttribute("tabindex", "-1");
+          success.focus({ preventScroll: true });
           success.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "center" });
         }
+        // GA4 conversion event — records the lead in Google Analytics.
+        // Analytics must never break the submit flow, so it's guarded.
+        try {
+          if (typeof gtag === "function") {
+            const need = form.elements["need"] ? form.elements["need"].value : "";
+            gtag("event", "generate_lead", {
+              form_name: "contact",
+              service: need || "unspecified",
+            });
+          }
+        } catch (e) { /* ignore analytics errors */ }
       };
 
       const errorPanel = $("#formError");
