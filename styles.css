@@ -55,6 +55,10 @@
 
 /* ---------- Reset-ish ---------- */
 *, *::before, *::after { box-sizing: border-box; }
+/* Ensure the [hidden] attribute always wins over component display rules
+   (e.g. .form-success / .form__error use display:flex). Without this, the
+   success and error panels render on page load instead of staying hidden. */
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
