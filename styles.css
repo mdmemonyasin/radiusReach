@@ -565,6 +565,7 @@ select:focus-visible, textarea:focus-visible, .checkbox input:focus-visible + .c
 .footer__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; gap: 40px; padding-bottom: 48px; }
 .footer .nav__brand { color: var(--paper); }
 .footer__tag { color: var(--muted-on-ink); margin: 16px 0; max-width: 30ch; }
+.footer__addr { color: var(--muted-on-ink); margin-top: 8px; }
 .footer__social { display: flex; gap: 12px; }
 .footer__social a { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line-on-ink); color: var(--paper); transition: background 200ms ease, border-color 200ms ease; }
 .footer__social a:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); }

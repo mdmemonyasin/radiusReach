@@ -11,7 +11,7 @@ const CONFIG = {
   // WhatsApp number in international format, digits only (no +, spaces or dashes)
   WHATSAPP_NUMBER: "916264357763",
   // Phone number for tel: links (human-readable, may include + and spaces)
-  PHONE: "+91 62643 57763",
+  PHONE: "+91 78690 44792",
   // Contact email
   EMAIL: "admin@radiusreach.in",
   // Form endpoint. Using Web3Forms (delivers submissions to admin@radiusreach.in).
